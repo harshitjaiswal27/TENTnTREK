@@ -1,28 +1,16 @@
-var express = require("express");
-    bodyParser = require('body-parser');
-    app = express();
-    mongoose = require('mongoose');
+var express     = require("express");
+    bodyParser  = require('body-parser');
+    app         = express();
+    mongoose    = require('mongoose');
+    Campground  = require('./models/campground');
+    seedDB      = require('./seed');
 
 mongoose.connect("mongodb://localhost:27017/YelpCamp",{useNewUrlParser: true, useCreateIndex:true , useUnifiedTopology: true},function(err,res){
     if(err) console.log(err);
-    else console.log("Connected");
+    else console.log("Connected to Database");
 });
 
-var campgroundSchema = new mongoose.Schema({
-    title : String,
-    img : String,
-    description : String
-});
-
-var Campground = mongoose.model("Campground", campgroundSchema);
-
-// Campground.create({
-//     "title" : "Las Vegas", "img" : "https://www.casino.org/news/wp-content/uploads/2020/01/LAs-Vegas.jpg",
-//     "description" : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
-// },function(err,res){
-//     if(err) console.log(err);
-//     else console.log(res);
-// })
+seedDB();
 
 app.set("view engine","ejs");
 
@@ -57,31 +45,14 @@ app.get("/campgrounds/new",function(req,res){
 });
 
 app.get("/campgrounds/:id",function(req,res){
-    Campground.findOne({_id : req.params.id},function(err,foundCampground){
+    Campground.findById(req.params.id).populate("comments").exec(function(err,foundCampground){
         if(err) console.log(err)
         else res.render("show",{ campground : foundCampground});
     });
 })
 
-app.listen(3000);
+app.listen(3000,function(err){
+    if(err) console.log(err);
+    else console.log("YelpCamp Server Started And Running on port 3000");
+});
 
-// var content = [
-    
-//     {
-//         title : "Las Vegas",
-//         img : "https://www.casino.org/news/wp-content/uploads/2020/01/LAs-Vegas.jpg"
-//     },
-//     {
-//         title : "Manhattan",
-//         img   : "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Above_Gotham.jpg/1200px-Above_Gotham.jpg"
-//     },
-//     {
-//         title : "New York",
-//         img   : "https://cdn.getyourguide.com/img/tour_img-1096032-146.jpg"
-//     },
-//     {
-//         title : "Las Vegas",
-//         img : "https://www.casino.org/news/wp-content/uploads/2020/01/LAs-Vegas.jpg"
-//     }
-// ];
-// "title" : "Las Vegas", "img" : "https://www.casino.org/news/wp-content/uploads/2020/01/LAs-Vegas.jpg"
