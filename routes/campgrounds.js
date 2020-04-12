@@ -9,18 +9,22 @@ router.get("/",function(req,res){
     })
 });
 
-router.post("/",function(req,res){
+router.post("/",isLoggedIn, function(req,res){
     var title = req.body.title;
     var img = req.body.image;
     var description = req.body.description;
-    var newCampground = { title , img , description};
+    var author  = {
+        id : req.user._id,
+        username : req.user.username
+    }
+    var newCampground = { title , img , description , author};
     Campground.create(newCampground,function(err,Campground){
         if(err) console.log(err);
+        else res.redirect("/campgrounds")
     })
-    res.redirect("/campgrounds")
 });
 
-router.get("/new",function(req,res){
+router.get("/new",isLoggedIn, function(req,res){
     res.render("campgrounds/new.ejs");
 });
 
