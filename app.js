@@ -16,7 +16,7 @@ mongoose.connect("mongodb://localhost:27017/YelpCamp",{useNewUrlParser: true, us
     if(err) console.log(err);
     else console.log("Connected to Database");
 });
-
+ 
 // seedDB();
 
 app.set("view engine","ejs");

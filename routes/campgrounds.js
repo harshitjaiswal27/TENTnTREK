@@ -16,7 +16,6 @@ router.post("/",function(req,res){
     var newCampground = { title , img , description};
     Campground.create(newCampground,function(err,Campground){
         if(err) console.log(err);
-        else console.log(Campground);
     })
     res.redirect("/campgrounds")
 });
