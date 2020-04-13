@@ -10,9 +10,10 @@ var express         = require("express");
     User            = require('./models/user');
     campgroundRoutes = require('./routes/campgrounds');
     commentRoutes   = require('./routes/comments');
-    indexRoutes      = require('./routes/index');
+    indexRoutes     = require('./routes/index');
+    methodOverride  = require('method-override');
 
-mongoose.connect("mongodb://localhost:27017/YelpCamp",{useNewUrlParser: true, useCreateIndex:true , useUnifiedTopology: true},function(err,res){
+mongoose.connect("mongodb://localhost:27017/YelpCamp",{useNewUrlParser: true, useCreateIndex:true , useUnifiedTopology: true, useFindAndModify: false },function(err,res){
     if(err) console.log(err);
     else console.log("Connected to Database");
 });
@@ -31,6 +32,7 @@ app.use(require('express-session')({
 }))
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(methodOverride("_method"));
 
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
