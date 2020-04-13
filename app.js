@@ -5,7 +5,6 @@ var express         = require("express");
     Campground      = require('./models/campground');
     passport        = require('passport');
     LocalStrategy   = require('passport-local');
-    seedDB          = require('./seed');
     Comment         = require('./models/comment');
     User            = require('./models/user');
     campgroundRoutes = require('./routes/campgrounds');
