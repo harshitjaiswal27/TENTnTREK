@@ -12,6 +12,7 @@ var express         = require("express");
     commentRoutes   = require('./routes/comments');
     indexRoutes     = require('./routes/index');
     methodOverride  = require('method-override');
+    flash           = require('connect-flash');
 
 mongoose.connect("mongodb://localhost:27017/YelpCamp",{useNewUrlParser: true, useCreateIndex:true , useUnifiedTopology: true, useFindAndModify: false },function(err,res){
     if(err) console.log(err);
@@ -24,6 +25,7 @@ app.set("view engine","ejs");
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname+"/public"));
+app.use(flash());
 
 app.use(require('express-session')({
     secret : "Always Use Passportjs to make Authentication Easier",
@@ -40,6 +42,8 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use(function(req,res,next){
     res.locals.currentUser = req.user;
+    res.locals.error = req.flash("error");
+    res.locals.success = req.flash("success");
     next();
 })
 
