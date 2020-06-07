@@ -5,7 +5,7 @@ This project was created using Node.js, Express, MongoDB, and Bootstrap. Passpor
 
 ### To Run the Project :
 
-Clone the repository by doing `git clone https://github.com/harshitjaiswal27/YelpCamp-2020.git`
+Clone the repository by doing `git clone https://github.com/harshitjaiswal27/TENTnTREK.git`
 
 #### `cd TENTnTREK`
 
