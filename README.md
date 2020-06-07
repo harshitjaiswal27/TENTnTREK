@@ -1,5 +1,5 @@
-# YelpCamp-2020
-YelpCamp is a website where users can create and review campgrounds. In order to review or create a campground, you must have an account. This project was part of Colt Steele's web dev course on udemy.  
+# TENTnTREK
+TENTnTREK is a website where users can create and review campgrounds. In order to review or create a campground, you must have an account.
 
 This project was created using Node.js, Express, MongoDB, and Bootstrap. Passport.js was used to handle authentication.  
 
@@ -7,7 +7,7 @@ This project was created using Node.js, Express, MongoDB, and Bootstrap. Passpor
 
 Clone the repository by doing `git clone https://github.com/harshitjaiswal27/YelpCamp-2020.git`
 
-#### `cd YelpCamp-2020`
+#### `cd TENTnTREK`
 
 #### To install dependencies :
 
