@@ -13,7 +13,7 @@ var express         = require("express");
     methodOverride  = require('method-override');
     flash           = require('connect-flash');
 
-mongoose.connect("mongodb://localhost:27017/YelpCamp",{useNewUrlParser: true, useCreateIndex:true , useUnifiedTopology: true, useFindAndModify: false },function(err,res){
+mongoose.connect("mongodb://localhost:27017/TENTnTREK",{useNewUrlParser: true, useCreateIndex:true , useUnifiedTopology: true, useFindAndModify: false },function(err,res){
     if(err) console.log(err);
     else console.log("Connected to Database");
 });
@@ -50,6 +50,6 @@ app.use("/",indexRoutes);
 
 app.listen(process.env.PORT||3000,function(err){
     if(err) console.log(err);
-    else console.log("YelpCamp Server Started");
+    else console.log("TENTnTREK Server Started");
 });
 
